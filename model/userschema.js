@@ -22,6 +22,10 @@ const userschemas=new mongoose.Schema({
         type:String,
         required:true
     },
+    username:{
+        type:String,
+        required:true
+    },
     date:{
         type:String,
         default:Date.now

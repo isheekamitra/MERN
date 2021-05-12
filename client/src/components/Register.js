@@ -8,7 +8,8 @@ const Register=()=>{
     email:"",
     work:"",
     password:"",
-    cpassword:""
+    cpassword:"",
+    username:""
 
   });
   let name,value;
@@ -20,12 +21,12 @@ const Register=()=>{
   }
    const postdata = async (event) =>{
       event.preventDefault();
-      const{name,email,work,password,cpassword}=user;
+      const{name,email,work,password,cpassword,username}=user;
       const res=await fetch("/register",{
         method:"POST",
         headers:{"Content-Type":"application/json"},
         body:JSON.stringify({
-          name,email,work,password,cpassword
+          name,email,work,password,cpassword,username
         })
       });
 
@@ -37,6 +38,10 @@ const Register=()=>{
      else if(res.status===417)
      {
       window.alert("Email already exist");
+     }
+     else if(res.status===417)
+     {
+      window.alert("Sorry! This username is already taken!");
      }
      else if(res.status===423)
      {
@@ -71,7 +76,24 @@ const Register=()=>{
            
       </label>
       <input type="text" name="name" id="name" value={user.name} onChange={handlechange} 
-      placeholder="Your Name"/>
+      placeholder="Your FirstName"/>
+      </div>
+
+      <div className="form-group">
+      <label htmlFor="work">
+      <i className="zmdi zmdi-slideshow material-icons-name"></i>
+           
+      </label>
+      <input type="text" name="work" id="work" value={user.work} onChange={handlechange} 
+      placeholder="Your LastName"/>
+      </div>
+      <div className="form-group">
+      <label htmlFor="work">
+      <i className="zmdi zmdi-slideshow material-icons-name"></i>
+           
+      </label>
+      <input type="text" name="username" id="username" value={user.username} onChange={handlechange} 
+      placeholder="Username"/>
       </div>
       <div className="form-group">
       <label htmlFor="email">
@@ -81,14 +103,7 @@ const Register=()=>{
       <input type="email" name="email" id="email" value={user.email} onChange={handlechange} 
       placeholder="Your Email"/>
       </div>
-      <div className="form-group">
-      <label htmlFor="work">
-      <i className="zmdi zmdi-slideshow material-icons-name"></i>
-           
-      </label>
-      <input type="text" name="work" id="work" value={user.work} onChange={handlechange} 
-      placeholder="Your Proffession"/>
-      </div>
+     
       <div className="form-group">
       <label htmlFor="password">
       <i className="zmdi zmdi-lock material-icons-name"></i>
@@ -124,6 +139,7 @@ const Register=()=>{
     
 </div>
   </section>
+
 
 
 

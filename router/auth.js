@@ -10,15 +10,18 @@ require('../db/conn');
 // });
 
 router.post('/register', async(req, res) => {
-    const {name,email,work,password,cpassword}=req.body;
+    const {name,email,work,password,cpassword,username}=req.body;
     if(!name || !password || !email || !work || !cpassword)
     return res.status(422).json({error:"Please fill all the feilds"});
 
     try{
         const userexist=await User.findOne({email:email});
+        const usernameexist=await User.findOne({username:username});
         if(userexist)
         return res.status(417).json({error:"Email already exist"});
-         const user=new User({name,email,work,password,cpassword});
+        if(usernameexist)
+        return res.status(418).json({error:"Username is already taken"});
+         const user=new User({name,email,work,password,cpassword,username});
          if(password!=cpassword)
          return res.status(423).json({error:"Passwords dont match"});
 
@@ -97,6 +100,23 @@ router.post('/contact',authenticate,async(req,res)=>{
        console.log(err);
    }
 });
+
+//update user
+router.put("/update", async (req, res) => {
+   
+   
+      try {
+        const user = await User.findByIdAndUpdate(req.body.id, {
+          $set: req.body,
+        });
+        res.status(200).json("Account has been updated");
+      } catch (err) {
+        return res.status(500).json(err);
+       }
+
+  
+  });
+
 //logout page
 router.get('/logout', authenticate ,(req, res) => {
     console.log(`Hello my logout`);
