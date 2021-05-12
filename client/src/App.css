@@ -154,7 +154,14 @@ nav{
  background-color: white;
   box-shadow: 9px 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
+.inputleft{
+  width: 107px;
+  outline: none;
+  border: 1px dashed gray;
+}
+.edit:hover{
+  color: green;
+}
 
 .form-title{
   padding: 16px;
@@ -537,6 +544,13 @@ margin: 0;
 .text_feild{
   color: rgb(1, 91, 133);
 }
+.input{
+  outline: none;
+  border: 1px dashed gray;
+  padding: 2px;
+  margin-bottom: 10px;
+}
+
 @media only screen and (max-width:640px){
   .notfound .notfound-404 h1{
     font-size: 170px;

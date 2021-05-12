@@ -10,6 +10,7 @@ import './App.css';
 import Error from './components/Error';
 import Logout from './components/Logout';
 import {initialState,reducer} from '../src/reducer/usereducer';
+import Edit from './components/Edit';
 export const UserContext=createContext()
 ;const App=()=> {
   const[state,dispatch]=useReducer(reducer,initialState);
@@ -24,6 +25,9 @@ export const UserContext=createContext()
       </Route>
       <Route  path="/about">
         <About/>
+      </Route>
+      <Route  path="/edit/:id">
+        <Edit/>
       </Route>
       <Route  path="/contact">
         <Contact/>

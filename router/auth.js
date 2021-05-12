@@ -75,9 +75,9 @@ router.get('/about', authenticate ,(req, res) => {
     console.log(`Hello my About`);
     res.send(req.rootuser);
 });
-router.get('/getdata',authenticate,(req,res)=>{
-    console.log(`Hello my About`);
-    res.send(req.rootuser);
+router.get('/:id',authenticate,(req,res)=>{
+    // console.log(`Hello my About`);
+    res.send(res.json);
 });
 //contact
 router.post('/contact',authenticate,async(req,res)=>{
@@ -109,6 +109,7 @@ router.put("/update", async (req, res) => {
         const user = await User.findByIdAndUpdate(req.body.id, {
           $set: req.body,
         });
+        res.send(user);
         res.status(200).json("Account has been updated");
       } catch (err) {
         return res.status(500).json(err);
